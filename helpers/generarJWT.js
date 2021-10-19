@@ -1,5 +1,13 @@
 const jwt = require('jsonwebtoken');
+<<<<<<< HEAD
 const { Usuario } = require('../models')
+=======
+<<<<<<< HEAD
+
+=======
+const { Usuario } = require('../models')
+>>>>>>> 0a27de5bce3bb7a5f08b06388a38dc9379a072c9
+>>>>>>> 0a1ea433ff36581b9e4e3e1283b76296f54b3dea
 
 
 const generarJWT = ( uid = '') => { //Esta funcion al ser llamada recibe un userId
@@ -27,6 +35,13 @@ const generarJWT = ( uid = '') => { //Esta funcion al ser llamada recibe un user
 }
 
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+module.exports = {
+    generarJWT
+=======
+>>>>>>> 0a1ea433ff36581b9e4e3e1283b76296f54b3dea
 const comprobarJWT = async( token = '') => {
     
     try {
@@ -58,4 +73,8 @@ const comprobarJWT = async( token = '') => {
 module.exports = {
     generarJWT,
     comprobarJWT
+<<<<<<< HEAD
+=======
+>>>>>>> 0a27de5bce3bb7a5f08b06388a38dc9379a072c9
+>>>>>>> 0a1ea433ff36581b9e4e3e1283b76296f54b3dea
 }

@@ -1,9 +1,22 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+const { validarCampos } = require('../middlewares/validar-campos');
+
+const { login, googleSignIn } = require('../controllers/auth');
+const { validarJWT } = require('../middlewares/validar-jwt');
+=======
+>>>>>>> 0a1ea433ff36581b9e4e3e1283b76296f54b3dea
 const { validarCampos, validarJWT } = require('../middlewares');
 
 const { login, googleSignIn, renovarToken } = require('../controllers/auth');
 
+<<<<<<< HEAD
+=======
+>>>>>>> 0a27de5bce3bb7a5f08b06388a38dc9379a072c9
+>>>>>>> 0a1ea433ff36581b9e4e3e1283b76296f54b3dea
 
 
 const router = Router();
@@ -26,7 +39,16 @@ router.post('/google', [
 ], googleSignIn  );
 
 
+<<<<<<< HEAD
 router.get('/', validarJWT, renovarToken )
 
 
+=======
+<<<<<<< HEAD
+=======
+router.get('/', validarJWT, renovarToken )
+
+
+>>>>>>> 0a27de5bce3bb7a5f08b06388a38dc9379a072c9
+>>>>>>> 0a1ea433ff36581b9e4e3e1283b76296f54b3dea
 module.exports =  router; 

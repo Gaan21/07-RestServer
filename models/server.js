@@ -2,10 +2,21 @@
 const express = require('express');
 const cors = require('cors');
 const fileUpload = require('express-fileupload');
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+const { dbConnection } = require('../database/config');
+=======
+>>>>>>> 0a1ea433ff36581b9e4e3e1283b76296f54b3dea
 const { createServer } = require('http');
 
 const { dbConnection } = require('../database/config');
 const { socketController } = require('../sockets/controller');
+<<<<<<< HEAD
+=======
+>>>>>>> 0a27de5bce3bb7a5f08b06388a38dc9379a072c9
+>>>>>>> 0a1ea433ff36581b9e4e3e1283b76296f54b3dea
 
 
 class Server {
@@ -15,9 +26,18 @@ class Server {
         this.app = express(); //Creamos la app de express como propiedad en la clase
         this.port = process.env.PORT;
 
+<<<<<<< HEAD
         this.server = createServer( this.app );
         this.io     = require('socket.io')(this.server);
 
+=======
+<<<<<<< HEAD
+=======
+        this.server = createServer( this.app );
+        this.io     = require('socket.io')(this.server);
+
+>>>>>>> 0a27de5bce3bb7a5f08b06388a38dc9379a072c9
+>>>>>>> 0a1ea433ff36581b9e4e3e1283b76296f54b3dea
         //Paths para la autenticacion y para los usuarios
         this.paths = {
             auth:       '/api/auth'     ,
@@ -45,9 +65,24 @@ class Server {
     async conectarDB() {
 
         await dbConnection();
+<<<<<<< HEAD
     }
 
 
+=======
+    }
+
+
+<<<<<<< HEAD
+    async conectarDB() {
+
+        await dbConnection();
+    }
+
+
+=======
+>>>>>>> 0a27de5bce3bb7a5f08b06388a38dc9379a072c9
+>>>>>>> 0a1ea433ff36581b9e4e3e1283b76296f54b3dea
     middlewares() { //Todo esto se ejecuta antes de llegar a las rutas
 
         //CORS: te quita muchos errores con navegadores. Protege el servidor de manera superficial.
@@ -84,11 +119,20 @@ class Server {
         this.app.use(this.paths.categorias, require('../routes/categorias'));
         this.app.use(this.paths.productos,  require('../routes/productos'));
         this.app.use(this.paths.uploads,    require('../routes/uploads'))
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 0a1ea433ff36581b9e4e3e1283b76296f54b3dea
     }
 
 
     sockets() {
         this.io.on('connection', ( socket ) => socketController(socket, this.io) )//NO ENTIENDO
+<<<<<<< HEAD
+=======
+>>>>>>> 0a27de5bce3bb7a5f08b06388a38dc9379a072c9
+>>>>>>> 0a1ea433ff36581b9e4e3e1283b76296f54b3dea
     }
 
 

@@ -119,6 +119,14 @@ const googleSignIn = async( req, res = response ) => {
 }
 
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+module.exports = { 
+    login,
+    googleSignIn
+=======
+>>>>>>> 0a1ea433ff36581b9e4e3e1283b76296f54b3dea
 const renovarToken = async ( req, res = response ) => {
 
     const { usuario } = req;
@@ -137,4 +145,8 @@ module.exports = {
     login,
     googleSignIn,
     renovarToken
+<<<<<<< HEAD
+=======
+>>>>>>> 0a27de5bce3bb7a5f08b06388a38dc9379a072c9
+>>>>>>> 0a1ea433ff36581b9e4e3e1283b76296f54b3dea
  }
