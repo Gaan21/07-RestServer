@@ -1,6 +1,9 @@
 
 const express = require('express');
 const cors = require('cors');
+const fileUpload = require('express-fileupload');
+
+const { dbConnection } = require('../database/config');
 
 
 class Server {
@@ -9,7 +12,19 @@ class Server {
 
         this.app = express(); //Creamos la app de express como propiedad en la clase
         this.port = process.env.PORT;
-        this.usuariosPath = '/api/usuarios';
+
+        //Paths para la autenticacion y para los usuarios
+        this.paths = {
+            auth:       '/api/auth'     ,
+            buscar:     '/api/buscar'   ,
+            usuarios:   '/api/usuarios' ,
+            productos:  '/api/productos',
+            categorias: '/api/categorias',
+            uploads:    '/api/uploads'
+        }
+       
+        //Conectar a base de datos:
+        this.conectarDB();
 
         //Midlewares:  Funciones que se van a ejecutar siempre cuando levantemos el servidor
         this.middlewares();
@@ -19,7 +34,13 @@ class Server {
     }
 
 
-    middlewares() {
+    async conectarDB() {
+
+        await dbConnection();
+    }
+
+
+    middlewares() { //Todo esto se ejecuta antes de llegar a las rutas
 
         //CORS: te quita muchos errores con navegadores. Protege el servidor de manera superficial.
         this.app.use( cors() );
@@ -29,13 +50,32 @@ class Server {
 
         //Directorio publico:   //Sirve el contenido que hay en la carpeta public en index.html
         this.app.use( express.static('public') ); 
+
+        //File upload - Carga de archivos
+        this.app.use(fileUpload({
+            useTempFiles : true,
+            tempFileDir : '/tmp/',
+            createParentPath: true //Para que cree una carpeta dentro de uploads si le mandamos 
+            //una ruta con una carpeta nueva que no existe
+        }));
+
+       /*  this.app.use(bodyParser.urlencoded({ extended: false }));
+
+        this.app.use(bodyParser.json()); */
     }
 
     
     routes() {
-            //Midleware condicional, se solicita a /usuarios y se llama a /routes/user
-      this.app.use(this.usuariosPath, require('../routes/user'));
-      //Nuevo path que hay que poner en el navegador
+        //Definimos las rutas:
+        this.app.use(this.paths.auth,       require('../routes/auth'));
+        this.app.use(this.paths.buscar,     require('../routes/buscar'));
+
+    //Midleware condicional, se solicita a /usuarios y se llama a /routes/user
+        this.app.use(this.paths.usuarios,   require('../routes/user'));
+    //Nuevo path que hay que poner en el navegador
+        this.app.use(this.paths.categorias, require('../routes/categorias'));
+        this.app.use(this.paths.productos,  require('../routes/productos'));
+        this.app.use(this.paths.uploads,    require('../routes/uploads'))
     }
 
 
