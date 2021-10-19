@@ -1,9 +1,16 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
+<<<<<<< HEAD
 const { validarCampos } = require('../middlewares/validar-campos');
 
 const { login, googleSignIn } = require('../controllers/auth');
 const { validarJWT } = require('../middlewares/validar-jwt');
+=======
+const { validarCampos, validarJWT } = require('../middlewares');
+
+const { login, googleSignIn, renovarToken } = require('../controllers/auth');
+
+>>>>>>> 0a27de5bce3bb7a5f08b06388a38dc9379a072c9
 
 
 const router = Router();
@@ -26,4 +33,10 @@ router.post('/google', [
 ], googleSignIn  );
 
 
+<<<<<<< HEAD
+=======
+router.get('/', validarJWT, renovarToken )
+
+
+>>>>>>> 0a27de5bce3bb7a5f08b06388a38dc9379a072c9
 module.exports =  router; 

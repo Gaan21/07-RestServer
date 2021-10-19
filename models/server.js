@@ -2,8 +2,15 @@
 const express = require('express');
 const cors = require('cors');
 const fileUpload = require('express-fileupload');
+<<<<<<< HEAD
 
 const { dbConnection } = require('../database/config');
+=======
+const { createServer } = require('http');
+
+const { dbConnection } = require('../database/config');
+const { socketController } = require('../sockets/controller');
+>>>>>>> 0a27de5bce3bb7a5f08b06388a38dc9379a072c9
 
 
 class Server {
@@ -13,6 +20,12 @@ class Server {
         this.app = express(); //Creamos la app de express como propiedad en la clase
         this.port = process.env.PORT;
 
+<<<<<<< HEAD
+=======
+        this.server = createServer( this.app );
+        this.io     = require('socket.io')(this.server);
+
+>>>>>>> 0a27de5bce3bb7a5f08b06388a38dc9379a072c9
         //Paths para la autenticacion y para los usuarios
         this.paths = {
             auth:       '/api/auth'     ,
@@ -31,6 +44,9 @@ class Server {
 
         //Rutas de mi app:
         this.routes();
+
+        //Sockets
+        this.sockets();
     }
 
 
@@ -40,6 +56,15 @@ class Server {
     }
 
 
+<<<<<<< HEAD
+    async conectarDB() {
+
+        await dbConnection();
+    }
+
+
+=======
+>>>>>>> 0a27de5bce3bb7a5f08b06388a38dc9379a072c9
     middlewares() { //Todo esto se ejecuta antes de llegar a las rutas
 
         //CORS: te quita muchos errores con navegadores. Protege el servidor de manera superficial.
@@ -76,12 +101,20 @@ class Server {
         this.app.use(this.paths.categorias, require('../routes/categorias'));
         this.app.use(this.paths.productos,  require('../routes/productos'));
         this.app.use(this.paths.uploads,    require('../routes/uploads'))
+<<<<<<< HEAD
+=======
+    }
+
+
+    sockets() {
+        this.io.on('connection', ( socket ) => socketController(socket, this.io) )//NO ENTIENDO
+>>>>>>> 0a27de5bce3bb7a5f08b06388a38dc9379a072c9
     }
 
 
     listen(){
         
-        this.app.listen( this.port, () => {
+        this.server.listen( this.port, () => {
 
             console.log('Servidor corriendo en el puerto: ', this.port )
         });

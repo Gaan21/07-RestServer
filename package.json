@@ -21,6 +21,7 @@
     "google-auth-library": "^7.10.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.8",
+<<<<<<< HEAD
     "supertest": "^6.1.6",
     "uuid": "^8.3.2"
   },
@@ -29,5 +30,9 @@
   },
   "jest": {
     "testEnvironment": "node"
+=======
+    "socket.io": "^4.2.0",
+    "uuid": "^8.3.2"
+>>>>>>> 0a27de5bce3bb7a5f08b06388a38dc9379a072c9
   }
 }
